@@ -1,4 +1,3 @@
-tf-aws-asg-elb-log
-==================
+# tf-aws-elb
 
-Auto-scaling with ELB + S3 Logging - Terraform Module
+AWS ELB Terraform Module
