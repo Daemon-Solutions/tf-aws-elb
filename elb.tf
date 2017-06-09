@@ -29,7 +29,7 @@ resource "aws_elb" "elb" {
   idle_timeout              = "${var.idle_timeout}"
   internal                  = "${var.internal}"
 
-  tags = {
+  tags {
     Name        = "${var.name}"
     Environment = "${var.envname}"
     Service     = "${var.service}"
