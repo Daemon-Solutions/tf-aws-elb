@@ -1,4 +1,6 @@
 resource "aws_elb" "elb" {
+  name            = "${var.name}"
+  
   subnets         = ["${var.subnets}"]
   security_groups = ["${var.security_groups}"]
 
