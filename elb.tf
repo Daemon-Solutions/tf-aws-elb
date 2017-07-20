@@ -1,6 +1,6 @@
 resource "aws_elb" "elb" {
-  name            = "${var.name}"
-  
+  name = "${var.name}"
+
   subnets         = ["${var.subnets}"]
   security_groups = ["${var.security_groups}"]
 
@@ -20,11 +20,11 @@ resource "aws_elb" "elb" {
   }
 
   health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
+    healthy_threshold   = "${var.healthy_threshold}"
+    unhealthy_threshold = "${var.unhealthy_threshold}"
+    timeout             = "${var.healthcheck_timeout}"
     target              = "${var.backend_target}"
-    interval            = 30
+    interval            = "${var.healthcheck_interval}"
   }
 
   cross_zone_load_balancing = "${var.cross_zone}"

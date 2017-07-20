@@ -1,5 +1,6 @@
 # Global Configuration
 variable "name" {}
+
 variable "envname" {}
 variable "service" {}
 
@@ -93,4 +94,20 @@ variable "log_s3prefix" {
 
 variable "log_interval" {
   default = "60"
+}
+
+variable "unhealthy_threshold" {
+  default = "2"
+}
+
+variable "healthy_threshold" {
+  default = "2"
+}
+
+variable "healthcheck_timeout" {
+  default = "3"
+}
+
+variable "healthcheck_interval" {
+  default = "30"
 }
