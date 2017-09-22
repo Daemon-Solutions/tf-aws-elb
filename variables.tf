@@ -1,113 +1,145 @@
 # Global Configuration
-variable "name" {}
-
-variable "envname" {}
-variable "service" {}
-
-variable "region" {
-  default = "eu-west-1"
+variable "name" {
+  description = "The desired name for your ELB. Will also be added as the value for the 'Name' tag"
+  type = "string"
 }
 
-variable "elb_aws_account" {
-  default = {
-    us-east-1      = "127311923021"
-    us-west-2      = "797873946194"
-    us-west-1      = "027434742980"
-    eu-west-1      = "156460612806"
-    eu-west-2      = "652711504416"
-    eu-central-1   = "054676820928"
-    ap-southeast-1 = "114774131450"
-    ap-northeast-1 = "582318560864"
-    ap-southeast-2 = "783225319266"
-    ap-northeast-2 = "600734575887"
-    sa-east-1      = "507241528517"
-    us-gov-west-1  = "048591011584"
-    cn-north-1     = "638102146993"
-  }
+variable "envname" {
+  description = "This will become the value for the 'Environment' tag on resources created by this module"
+  type = "string"
+}
+variable "service" {
+  description = "This will become the value for the 'Service' tag on resources created by this module"
+  type = "string"
+}
+
+variable "region" {
+  description = "The AWS region in which to create your resources"
+  default = "eu-west-1"
 }
 
 # DNS Variables
 variable "elb_dns" {
+  description = "The count of how many ELB DNS records to create"
+  type = "string"
   default = "0"
 }
 
-variable "route53_zone_id" {}
-
-variable "domain" {}
-
-# ELB Configuration Variables
-variable "availability_zones" {
-  type = "list"
+variable "route53_zone_id" {
+  description = "The r53 zone ID in which to create DNS records"
+  type = "string"
 }
 
+variable "domain" {
+  description = "The domain name to specify for ELB DNS records"
+  type = "string"
+}
+
+# ELB Configuration Variables
 variable "subnets" {
+  description = "A list of subnet IDs to attach to the ELB"
   type = "list"
+  default = []
 }
 
 variable "security_groups" {
+  desription = "A list of security group IDs to assign to the ELB. Only valid if creating an ELB within a VPC"
   type = "list"
+  default = []
 }
 
 variable "elb_port" {
+  desription = "The port for your ELB to listen on"
+  type = "string"
   default = "80"
 }
 
 variable "elb_proto" {
+  desription = "The protocol for your ELB to listen on"
+  type = "string"
   default = "http"
 }
 
 variable "backend_target" {
+  desription = "The target of the back end healthcheck"
+  type = "string"
   default = "HTTP:80/"
 }
 
 variable "backend_port" {
+  desription = "The port that the ELB will route backend traffic on"
+  type = "string"
   default = "80"
 }
 
 variable "backend_proto" {
+  desription = "The protocol that the ELB will route backend traffic on"
+  type = "string"
   default = "http"
 }
 
 variable "ssl_cert_id" {
+  desription = "The ARN of a TLS certificate you have uploaded to AWS IAM. Only valid for protocols HTTPS or SSL"
+  type = "string"
   default = ""
 }
 
 variable "cross_zone" {
+  desription = "Enables cross-zone load balancing on your ELB"
+  type = "string"
   default = true
 }
 
 variable "idle_timeout" {
+  desription = "The time in seconds that a connection is allowed to be idle"
+  type = "string"
   default = 60
 }
 
 variable "internal" {
+  desription = "If true, ELB will be an internal ELB"
+  type = "string"
   default = false
 }
 
 variable "log_s3bucket" {
+  desription = "If desired an s3 bucket will be created with this name to store ELB logs"
+  type = "string"
   default = "None"
 }
 
 variable "log_s3prefix" {
+  desription = "The location inside the s3 bucket to store the logs"
+  type = "string"
   default = "ELB"
 }
 
 variable "log_interval" {
+  desription = "The log publishing interval in minutes"
+  type = "string"
   default = "60"
 }
 
 variable "unhealthy_threshold" {
+  desription = "The number of checks before the instance is declared unhealthy"
+  type = "string"
   default = "2"
 }
 
 variable "healthy_threshold" {
+  desription = "The number of checks before the instance is declared healthy"
+  type = "string"
   default = "2"
 }
 
 variable "healthcheck_timeout" {
+  desription = "The length of time before the healthcheck times out (minutes)"
+  type = "string"
   default = "3"
 }
 
 variable "healthcheck_interval" {
+  desription = "The length of time in between healthchecks (seconds)"
+  type = "string"
   default = "30"
 }
